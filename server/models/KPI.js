@@ -5,10 +5,50 @@ import { type } from "os";
 const Schema = mongoose.Schema;
 loadType(mongoose);
 
+const dayschema = new Schema(
+    {
+        day:String,
+        revenue:{
+            type: mongoose.Types.Currency,
+            currency: "USD",
+            get: (v) => (v/100) 
+         },
+         expenses:{
+            type: mongoose.Types.Currency,
+            currency: "USD",
+            get: (v) => (v/100) 
+         },
+         
+    },
+    {toJSON:{getters:true}}
+);
+
 const monthSchema = new Schema(
     {
         month:String,
-    }
+        revenue:{
+            type: mongoose.Types.Currency,
+            currency: "USD",
+            get: (v) => (v/100) 
+         },
+         expenses:{
+            type: mongoose.Types.Currency,
+            currency: "USD",
+            get: (v) => (v/100) 
+         },
+         operationalExpenses:{
+            type: mongoose.Types.Currency,
+            currency: "USD",
+            get: (v) => (v/100) 
+         },
+         nonOperationalExpenses:{
+            type: mongoose.Types.Currency,
+            currency: "USD",
+            get: (v) => (v/100) 
+         },
+         
+    },
+    {toJSON:{getters:true}}
 )
 
 const KPISchema = new Schema(
@@ -36,10 +76,11 @@ const KPISchema = new Schema(
             get: (v) => (v/100) 
         }
      },
-     monthlyData:[]
+     monthlyData:[monthSchema],
+     dailyData:[dayschema],
+    },
+    {timestamps:true, toJSON:{getters:true}}
 
-     
-    }
 );
 
 const KPI = mongoose.model("KPI", KPISchema);
