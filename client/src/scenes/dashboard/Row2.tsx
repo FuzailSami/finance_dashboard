@@ -46,6 +46,7 @@ const Row2 = () => {
     <>
      <DashboardBox gridArea="d">
           <BoxHeader 
+          icon={null}
           title=" Operations vs Non Operations Revenue"
           sideText="+4%" />
             <ResponsiveContainer width="100%" height="100%">
@@ -100,6 +101,7 @@ const Row2 = () => {
         </DashboardBox>
     <DashboardBox gridArea="e">
       <BoxHeader
+      icon={null}
       title="Campaign and Targets"
       sideText="+4%" /> 
       <FlexBetween mt="0.25rem" 
@@ -160,7 +162,7 @@ const Row2 = () => {
     </FlexBetween>
     </DashboardBox>
     <DashboardBox gridArea="f">
-      <BoxHeader title="Product Prices vs Expenses" sideText="+4%" />
+      <BoxHeader title="Product Prices vs Expenses" sideText="+4%" icon={null} />
         <ResponsiveContainer width="100%" height="100%">
           <ScatterChart
             margin={{
@@ -189,7 +191,7 @@ const Row2 = () => {
               style={{ fontSize: "10px" }}
               tickFormatter={(v) => `$${v}`}
             />
-            <ZAxis type="number" range={[20]} />
+            <ZAxis type="number" range={[20, 20]} />
             <Tooltip formatter={(v) => `$${v}`} />
             <Scatter
               name="Product Expense Ratio"

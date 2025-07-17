@@ -9,7 +9,9 @@ import kpiRoutes from './routes/kpi.js';
 import productRoutes from './routes/product.js'
 import Product from './models/Product.js';
 import KPI from './models/KPI.js';
-import { kpis,products } from './data/data.js';
+import transactionRoutes from "./routes/transaction.js"
+import Transaction from "./models/Transactions.js"
+import { kpis,products, transactions } from './data/data.js';
 
 dotenv.config();
 const app = express();
@@ -23,6 +25,7 @@ app.use(cors());
 
 app.use("/kpi", kpiRoutes);
 app.use("/product",productRoutes)
+app.use("/transaction",transactionRoutes)
 
 
 
@@ -36,6 +39,7 @@ mongoose.connect(process.env.MONGO_URL, {
     await mongoose.connection.db.dropDatabase();
     KPI.insertMany(kpis);
     Product.insertMany(products);
+    Transaction.insertMany(transactions);
 
 })
 .catch((error) => console.log(`${error} did not connect`));
